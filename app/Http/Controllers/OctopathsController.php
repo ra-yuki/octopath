@@ -54,15 +54,6 @@ class OctopathsController extends Controller
         // - variable declared but without value, or
         // - totally not declared
         */
-        /*
-        print_r($_POST);
-        if(isset($_POST['title8'])){
-            print 'true';
-        }
-        else{
-            print 'false';
-        }
-        */
         
         //Exception Handling
         for($i=0; $i<$request->merge_num; $i++){
@@ -85,6 +76,7 @@ class OctopathsController extends Controller
         }
         
         //Store requested data to octopaths table
+        $octopath = OctopathHelper::generate_octopath();
         for($i=0; $i<$request->merge_num; $i++){
             //instantiate model
             $octopath_table = new Octopath();
@@ -93,7 +85,7 @@ class OctopathsController extends Controller
             $octopath_table->link = $_POST['link'. ($i+1)];
             $octopath_table->title = $_POST['title'. ($i+1)];
             $octopath_table->description = $_POST['description'. ($i+1)];
-            $octopath_table->octopath = 3;
+            $octopath_table->octopath = $octopath;
             $octopath_table->display_order = $i;
             
             //save to octopaths table

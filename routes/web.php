@@ -13,14 +13,15 @@
 
 /*
 | To-Dos
-| 1. create a proper shorten link
-| 2. create octopath_meta table having 'title', 'retention_period', and 'octopath'
+| >> 1. create a proper shorten link
+| 2. create octopath_meta_datasets table having 'title', 'retention_period', and 'octopath'
+|   more on how to connect table to model manually (https://laravel.com/docs/5.6/eloquent#defining-models)
 | 3. dashboard (layout, edit function, (enabled/disabled function), and delete function)
 | 3.1. custom link name
 | 4. optimize table settings (string length...)
 */
 
-Route::get('/', 'OctopathsController@index');
+Route::get('/', 'OctopathsController@index')->name('octopaths.index');
 
 Route::get('/dashboard', 'OctopathsController@show_dashboard')->name('octopaths.dashboard');
 

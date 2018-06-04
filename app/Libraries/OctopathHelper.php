@@ -21,7 +21,7 @@ class OctopathHelper{
         return ($sec + $msec) * 1000000;
     }
     
-    //reference from: http://php.net/manual/en/function.base-convert.php#109308, corrected a bit (init of $_10to62)
+    //reference from: http://php.net/manual/en/function.base-convert.php#109308, corrected a bit (init of $_10to62, $_62to10)
     public static function base_convert_x( $_number='', $_frBase=10, $_toBase=62 ) {
 
         //Today's Date - C74 - convert a string (+ve integer) from any arbitrary base to any arbitrary base, up to base 62, using  0-9,A-Z,a-z
@@ -43,7 +43,7 @@ class OctopathHelper{
 
         $_in_b10        =   0;
         $_pwr_of_frB    =   1;                        //power of from base, eg. 1, 8, 64, 512
-        $_chars         =   str_split( $_number );    //split input // into chars
+        $_chars         =   str_split( $_number );    //split input number into chars
         $_str_len       =   strlen( $_number );
         $_pos           =   0;
 
@@ -55,7 +55,7 @@ class OctopathHelper{
 
         //Now convert from base-10 to toBase
 
-        $_dividend      =   (int)   $_in_b10;         //name dividend easier to follow below
+        $_dividend      =   (int)$_in_b10;         //name dividend easier to follow below
         $_in_toB        =   '';                       //number string in toBase
     
         while     ( $_dividend > 0 )        {

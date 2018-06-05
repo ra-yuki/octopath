@@ -1,0 +1,20 @@
+.navbar-brand {
+    font-size: 24px;
+}
+
+#nav {
+    background-color: #000b29;
+    margin-bottom: 0;
+}
+
+#nav a {
+    color: #f8f5fa;
+    padding-top: 32px; /*added 2px for border-top when :hover*/
+    padding-bottom: 20px;
+}
+
+#nav a:hover {
+    color: #f8f5fa;
+    border-top: 4px solid #d70026;
+    padding-top: 28px;
+}

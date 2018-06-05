@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Log;
 
 use App\Octopath;
 use App\MetaDataset;
@@ -19,10 +20,14 @@ class OctopathsController extends Controller
      */
     public function index()
     {
-        $octopath_datasets = Octopath::all();
+        $octopath_dataset = new Octopath();
+        
+        $default_retention_date = OctopathHelper::get_date_year_added(OctopathHelper::get_today());
 
         return view('octopaths.index', [
-            'octopath_datasets' => $octopath_datasets,
+            'octopath_dataset' => $octopath_dataset,
+            'merge_num' => OctopathConfig::MERGE_NUM,
+            'default_retention_date' => $default_retention_date,
         ]);
     }
 
@@ -33,14 +38,25 @@ class OctopathsController extends Controller
      */
     public function create()
     {
+        //*-- model --*//
         $octopath_dataset = new Octopath();
         
+        //get the date 1 year later from today
+        $default_retention_date = OctopathHelper::get_date_year_added(OctopathHelper::get_today());
+        
+        //get merge_num
+        $merge_num = (isset($_GET['merge_num']) && ($_GET['merge_num'] > 0)) ? OctopathHelper::get_limited_value($_GET['merge_num'], OctopathConfig::MAX_MERGE_NUM) : OctopathConfig::MERGE_NUM;
+        
+        //*-- view --*//
         return view('octopaths.create', [
             'octopath_dataset' => $octopath_dataset,   
-            'merge_num' => OctopathConfig::MERGE_NUM,
+            'merge_num' => $merge_num,
+            'default_retention_date' => $default_retention_date,
+            'merge_num_plus_one' => ($merge_num+1),
+            'merge_num_minus_one' => ($merge_num-1),
         ]);
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -49,13 +65,6 @@ class OctopathsController extends Controller
      */
     public function store(Request $request)
     {
-        /*
-        // isset() returns false only when the assigned value is:
-        // - NULL,
-        // - variable declared but without value, or
-        // - totally not declared
-        */
-        
         //Exception Handling
         for($i=0; $i<$request->merge_num; $i++){
             /* //REGEX DOES NOT WORK:(
@@ -102,10 +111,7 @@ class OctopathsController extends Controller
         $meta_datasets->retention_date = $_POST['retention_date'];
         $meta_datasets->save();
         
-        return redirect('/');
-        
-        //return for redirecting to result page
-        //return redirect('/result?octopath=1');
+        return redirect('/'. $octopath. '/result');
     }
 
     /**
@@ -116,26 +122,24 @@ class OctopathsController extends Controller
      */
     public function show($octopath)
     {
+        //*-- model --*//
         //get metadata of octopath
         $meta_data = MetaDataset::where('octopath', '=', $octopath)->get();
-        //print_r($meta_data);
-        
+
         //get link data inside octopath url
         $octopath_datasets = Octopath::where('octopath', '=', $octopath)
             ->orderBy('display_order', 'asc')
             ->get();
-        //print_r($octopath_datasets);
-        
+
         //get full octopath url
         $octopath_url = Octopath::get_octopath_url($octopath_datasets[0]->octopath);
         
-        //view
+        //*-- view --*//
         return view('octopaths.show', [
-            'meta_data' => $meta_data,
+            'meta_data' => $meta_data[0],
             'octopath_datasets' => $octopath_datasets,
             'octopath_url' => $octopath_url,
         ]);
-        
     }
 
     /**
@@ -210,9 +214,19 @@ class OctopathsController extends Controller
 
     public function show_dashboard(){
         $octopath_datasets = Octopath::all();
+        $meta_datasets = MetaDataset::all();
         
         return view('octopaths.dashboard',[
             'octopath_datasets' => $octopath_datasets,
+            'meta_datasets' => $meta_datasets,
+        ]);
+    }
+    
+    public function result($octopath){
+        $octopath_url = OctopathHelper::create_octopath_url($octopath);
+        
+        return view('octopaths.result', [
+            'octopath_url' => $octopath_url,
         ]);
     }
 }

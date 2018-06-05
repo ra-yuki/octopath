@@ -1,5 +1,9 @@
 # Notes
 
+## Design
+### Color combination
+https://www.canva.com/learn/wp-content/uploads/2015/06/color-combo-52-tb-728x0.png
+
 ## Laravel
 ### Blade Template
 https://laravel.com/docs/5.6/blade

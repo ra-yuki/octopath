@@ -2,9 +2,30 @@
 
 namespace App\Libraries;
 
+use DateInterval;
+
 class OctopathHelper{
     public static function create_octopath_url($octopath){
         return (isset($_SERVER['HTTPS']) ? "https" : "http") . "://". explode(':', $_SERVER['HTTP_HOST'])[0]. '/'.  $octopath; //drop port number by explode()
+    }
+    
+    public static function get_limited_value($value, $limit){
+        if($value > $limit){
+            $value = $limit;
+        }
+        
+        return $value;
+    }
+    
+    public static function get_today(){
+        return explode('T', date('c'))[0];
+    }
+    
+    public static function get_date_year_added($date, $value=1){
+        $date = date_create($date);
+        $date->add( DateInterval::createFromDateString(($value == 1) ? $value. 'year' : $value. ' years') );
+        
+        return date_format($date, 'Y-m-d');
     }
     
     /*

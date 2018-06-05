@@ -19,6 +19,8 @@ Route::get('/create', 'OctopathsController@create')->name('octopaths.create');
 
 Route::get('/{octopath}/edit', 'OctopathsController@edit')->name('octopaths.edit');
 
+Route::get('/{octopath}/result', 'OctopathsController@result')->name('octopaths.result');
+
 Route::get('/{octopath}', 'OctopathsController@show')->name('octopaths.show');
 
 Route::put('/{octopath}', 'OctopathsController@update')->name('octopaths.update');

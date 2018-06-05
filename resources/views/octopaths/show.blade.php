@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+    OctpathURL
+@endsection
+
 @section('content')
-    <h1>{{ $meta_data[0]->title }}</h1>
+    <h1>{{ $meta_data->title }}</h1>
     <h2>Octopath: <a href="{{ $octopath_url }}">{{ $octopath_url }}</a></h2>
     @if(count($octopath_datasets) > 0)
         @foreach($octopath_datasets as $octopath)

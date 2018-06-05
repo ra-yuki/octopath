@@ -2,8 +2,8 @@
 
 @section('content')
     <h1>Dashboard</h1>
-    @if(count($octopaths) > 0)
-        @foreach($octopaths as $octopath)
+    @if(count($octopath_datasets) > 0)
+        @foreach($octopath_datasets as $octopath)
             <h3>{{ $octopath->title }} [octopath: {{ $octopath->octopath }}]</h3>
             <ul>
                 <li><b>link</b>: <a href="{{ $octopath->link }}">{{ $octopath->link }}</a></li>

@@ -6,8 +6,8 @@
 
 @section('content')
     <h1>Octopath</h1>
-    @if(count($octopaths) > 0)
-        @foreach($octopaths as $octopath)
+    @if(count($octopath_datasets) > 0)
+        @foreach($octopath_datasets as $octopath)
             <p>{{ $octopath }}</p>
         @endforeach
     @endif

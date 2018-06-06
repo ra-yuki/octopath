@@ -5,7 +5,7 @@
 @endsection
 
 @section('head-plus')
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href={{ asset('css/index.css') }}>
 @endsection
 
 @section('content')

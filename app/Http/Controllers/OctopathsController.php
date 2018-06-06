@@ -225,7 +225,7 @@ class OctopathsController extends Controller
     public function result($octopath){
         $octopath_url = OctopathHelper::create_octopath_url($octopath);
         
-        return view('octopaths.result', [
+        return view('octopaths.result',[
             'octopath_url' => $octopath_url,
         ]);
     }

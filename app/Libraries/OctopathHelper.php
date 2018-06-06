@@ -39,7 +39,7 @@ class OctopathHelper{
     
     public static function create_seed(){
         list($msec, $sec) = explode(" ", microtime());
-        return ($sec + $msec) * 1000000;
+        return (int)(($sec + $msec) * 1000000);
     }
     
     //reference from: http://php.net/manual/en/function.base-convert.php#109308, corrected a bit (init of $_10to62, $_62to10)

@@ -14,9 +14,9 @@ class UpdateOctopathTable extends Migration
     public function up()
     {
         Schema::table('octopaths', function (Blueprint $table) {
-            $table->renameColumn('links', 'link');
-            $table->renameColumn('titles', 'title');
-            $table->renameColumn('descriptions', 'description');
+            //$table->renameColumn('links', 'link');
+            //$table->renameColumn('titles', 'title');
+            //$table->renameColumn('descriptions', 'description');
         });
     }
 

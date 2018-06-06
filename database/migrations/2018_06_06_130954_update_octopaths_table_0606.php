@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateOctopathTable2 extends Migration
+class UpdateOctopathsTable0606 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,10 @@ class UpdateOctopathTable2 extends Migration
     public function up()
     {
         Schema::table('octopaths', function (Blueprint $table) {
-            //$table->integer('display_order');
+            $table->renameColumn('links', 'link');
+            $table->renameColumn('titles', 'title');
+            $table->renameColumn('descriptions', 'description');
+            $table->integer('display_order');
         });
     }
 

@@ -45,22 +45,30 @@
 }
 
 #middle-container h1 {
+    padding-top: 34px;
     color: #000b29;
+    text-align: center;
+    font-size: 34px;
 }
 
-#middle-instruction {
-    background-color: #f8f5f2;
+#middle-container p {
+    padding-top: 40px;
+    text-align: center;
+}
+
+#middle-container figcaption {
+    padding-top: 34px;
+    font-size: 21px;
+    text-align: center;
+}
+
+#middle-container div {
     display: inline-block;
 }
 
-#middle-instruction2 {
-    background-color: #f8f5f2;
-    display: inline-block;
-}
-
-#middle-instruction3 {
-    background-color: #f8f5f2;
-    display: inline-block;
+#middle-container div img {
+    width: 200px;
+    height: 200px;
 }
 
 /* bottom */

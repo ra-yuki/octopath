@@ -20,14 +20,20 @@
     </div>
     <div id="middle-container_wrapper">
         <div id="middle-container" class="container">
-            <div id="middle-instruction" class="col-xs-4">
+            <div class="col-xs-4">
                 <h1>1. MERGE LINKS</h1>
+                <p><img src="{{ asset('img/merge_red.png') }}" alt=""></p>
+                <figcaption>DOCUMENT, COOKING RECIPE, YOUTUBE VIDEO...</figcaption>
             </div>
-            <div id="middle-instruction2" class="col-xs-4">
-                <h1>2. PASTE ON MESSSAGE</h1>
+            <div class="col-xs-4">
+                <h1>2. PASTE THEM</h1>
+                <p><img src="{{ asset('img/paste_dark.png') }}" alt=""></p>
+                <figcaption>ON VIBER, WEBSITE, OR EVEN YOUR PORTOFOLIO</figcaption>
             </div>
-            <div id="middle-instruction3" class="col-xs-4">
-                <h1>3. OCTOPATH!</h1>
+            <div class="col-xs-4">
+                <h1>3. ALL SET!</h1>
+                <p><img src="{{ asset('img/octopath_red.png') }}" alt=""></p>
+                <figcaption>BOOOM! SPREAD YOUR PATHS TO THE WORLD! :)</figcaption>
             </div>
         </div>
     </div>

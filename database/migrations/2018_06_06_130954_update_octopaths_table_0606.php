@@ -14,10 +14,10 @@ class UpdateOctopathsTable0606 extends Migration
     public function up()
     {
         Schema::table('octopaths', function (Blueprint $table) {
-            $table->renameColumn('links', 'link');
+            /*$table->renameColumn('links', 'link');
             $table->renameColumn('titles', 'title');
             $table->renameColumn('descriptions', 'description');
-            $table->integer('display_order');
+            $table->integer('display_order');*/
         });
     }
 

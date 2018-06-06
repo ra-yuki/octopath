@@ -14,7 +14,7 @@ class UpdateOctopathTable2 extends Migration
     public function up()
     {
         Schema::table('octopaths', function (Blueprint $table) {
-            //$table->integer('display_order');
+            $table->integer('display_order');
         });
     }
 

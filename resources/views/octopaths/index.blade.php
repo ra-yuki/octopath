@@ -50,9 +50,11 @@
                             {{-- title form --}}
                             {!! Form::hidden('title'. ($i+1), '') !!}
                             
-                            {{-- link form --}}
-                            {!! Form::label('link'. ($i+1), 'LINK'. ($i+1)) !!}
-                            {!! Form::text('link'. ($i+1)) !!}
+                            <div class="form-group">
+                                {{-- link form --}}
+                                {!! Form::label('link'. ($i+1), 'LINK'. ($i+1)) !!}
+                                {!! Form::text('link'. ($i+1), null, ['class' => 'form-control']) !!}
+                            </div>
     
                             {{-- description form --}}
                             {!! Form::hidden('description'. ($i+1), '') !!}
@@ -63,8 +65,7 @@
                     {{-- {!! Form::text('merge_num', $merge_num) !!} --}}
                     <input type="hidden" name="merge_num" value="{{ $merge_num }}">
                     
-                    <br>
-                    {!! Form::submit('MERGE', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('MERGE LINKS', ['id' => 'submit-btn', 'class' => 'btn col-xs-2 col-xs-offset-5']) !!}
                 {!! Form::close() !!}            
             </div>
         </div>

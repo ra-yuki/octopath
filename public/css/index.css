@@ -4,6 +4,7 @@
 /* top */
 #top-container_wrapper {
     background-color: #000b29;
+    /*background-image: url("../img/logo.png");*/
 }
 
 #top-welcome_screen {
@@ -84,8 +85,24 @@
     background-color: #000b29;
 }
 
-#bottom-form_input {
-    
+#bottom-merge_links h1 {
+    padding: 34px 0 21px 0;
+    font-size: 55px;
+    text-align: center;
+}
+
+#submit-btn {
+    margin-top: 34px;
+    padding: 15px 0px;
+    background-color: #d70026;
+    color: #f8f5f2;
+    border: none;
+    text-align: center;
+}
+
+#submit-btn:hover {
+    background-color: #cd001c;
+    color: #f8f5f2;
 }
 
 .emphasize {

@@ -21,8 +21,18 @@
 
 #nav a:hover {
     color: #f8f5fa;
+    background-color: #000b29;
     border-top: 4px solid #d70026;
     padding-top: 28px;
+}
+
+.dropdown-menu{
+    background-color: #000b29;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown-menu .divider {
+    background-color: #f8f5fa;
 }
 
 footer small {

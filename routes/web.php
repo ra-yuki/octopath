@@ -21,12 +21,13 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-//*--octopath main--*//
-//need an auuthentication for this grouped routes
+//*-- user *--//
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/dashboard', 'OctopathsController@show_dashboard')->name('octopaths.dashboard');
+    Route::get('/settings', 'UsersController@config')->name('users.config');
+    Route::get('/dashboard', 'UsersController@show_dashboard')->name('users.dashboard');
 });
 
+//*-- octopath main --*//
 Route::get('/', 'OctopathsController@index')->name('octopaths.index');
 
 Route::get('/create', 'OctopathsController@create')->name('octopaths.create');

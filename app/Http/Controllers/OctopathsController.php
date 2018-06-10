@@ -210,16 +210,6 @@ class OctopathsController extends Controller
     {
         //
     }
-
-    public function show_dashboard(){
-        $octopath_datasets = Octopath::all();
-        $meta_datasets = MetaDataset::all();
-        
-        return view('octopaths.dashboard',[
-            'octopath_datasets' => $octopath_datasets,
-            'meta_datasets' => $meta_datasets,
-        ]);
-    }
     
     public function result($octopath){
         $octopath_url = OctopathHelper::create_octopath_url($octopath);

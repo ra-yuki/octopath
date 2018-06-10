@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Log;
 
 use App\Octopath;
 use App\MetaDataset;
+use App\Folder;
 use App\Libraries\OctopathConfig;
 use App\Libraries\OctopathHelper;
 
@@ -88,6 +90,7 @@ class OctopathsController extends Controller
         //Store requested data to octopaths table
         //octopaths table
         $octopath = OctopathHelper::generate_octopath();
+        //iterate as many times as merge_num corresponds
         for($i=0; $i<$request->merge_num; $i++){
             //instantiate model
             $octopath_table = new Octopath();
@@ -108,6 +111,13 @@ class OctopathsController extends Controller
         $meta_datasets->octopath = $octopath;
         $meta_datasets->title = $_POST['octopath_title'];
         $meta_datasets->retention_date = $_POST['retention_date'];
+        //if authenticated, parse user id to meta datasets
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+
+            //link user id with octopath
+            $meta_datasets->user_id = $user_id;
+        }
         $meta_datasets->save();
         
         return redirect('/'. $octopath. '/result');
@@ -150,11 +160,17 @@ class OctopathsController extends Controller
     public function edit($octopath)
     {
         $octopath_datasets = Octopath::where('octopath', '=', $octopath)->get();
-        $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get();
+        $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get()[0];
         
+        //redirect to login if the octopath is user_id specified, and the user operating is NOT matched with the id
+        $condition = ($meta_dataset->user_id != null) && ( !Auth::check() || ($meta_dataset->user_id != Auth::user()->id) );
+        if($condition){
+            return view('generals.not_authorized');
+        }
+
         return view('octopaths.edit', [
             'octopath_datasets' => $octopath_datasets,
-            'meta_dataset' => $meta_dataset[0],
+            'meta_dataset' => $meta_dataset,
         ]);
     }
 
@@ -177,7 +193,7 @@ class OctopathsController extends Controller
         
         //Update requested data to octopaths table
         //octopaths table
-        $octopath_tables = Octopath::where('octopath', '=', $octopath)->get();
+        $octopath_tables = Octopath::where('octopath', '=', $octopath)->orderBy('display_order')->get();
         for($i=0; $i<count($octopath_tables); $i++){
             //assign values
             $octopath_tables[$i]->link = $_POST['link'. ($i+1)];
@@ -193,11 +209,10 @@ class OctopathsController extends Controller
         $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get()[0];
         $meta_dataset->octopath = $octopath;
         $meta_dataset->title = $_POST['octopath_title'];
-        $meta_dataset->enabled = true;
         $meta_dataset->retention_date = $_POST['retention_date'];
         $meta_dataset->save();
         
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     /**
@@ -206,9 +221,12 @@ class OctopathsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($octopath)
     {
-        //
+        Octopath::delete_by_octopaths(array($octopath));
+        MetaDataset::delete_by_octopaths(array($octopath));
+
+        return redirect()->back();
     }
     
     public function result($octopath){

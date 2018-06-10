@@ -20,6 +20,7 @@ class MetaDataset extends Model
         return $octopaths;
     }
     
+    //param: octopaths (array, string)
     public static function delete_by_octopaths($octopaths){
         $results = [];
         for($i=0; $i<count($octopaths); $i++){

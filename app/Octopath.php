@@ -14,6 +14,7 @@ class Octopath extends Model
         return OctopathHelper::create_octopath_url($octopath);
     }
     
+    //param: octopaths (array, string)
     public static function delete_by_octopaths($octopaths){
         $results = [];
         for($i=0; $i<count($octopaths); $i++){

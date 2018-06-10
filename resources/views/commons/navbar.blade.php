@@ -21,7 +21,7 @@
                             </a>
                             <!-- options -->
                             <ul class="dropdown-menu">
-                                <li>{!! link_to_route('users.config', 'SETTIGNS') !!}</li>
+                                <li>{!! link_to_route('users.config', 'SETTINGS') !!}</li>
                                 <li>{!! link_to_route('users.dashboard', 'DASHBOARD') !!}</li>
                                 <li role="separator" class="divider"></li>
                                 <li>{{ link_to_route('logout.get', 'LOGOUT') }}

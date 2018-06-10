@@ -40,4 +40,6 @@ Route::get('/{octopath}', 'OctopathsController@show')->name('octopaths.show');
 
 Route::put('/{octopath}', 'OctopathsController@update')->name('octopaths.update');
 
+Route::delete('/{octopath}', 'OctopathsController@destroy')->name('octopaths.destroy');
+
 Route::post('/store', 'OctopathsController@store')->name('octopaths.store');

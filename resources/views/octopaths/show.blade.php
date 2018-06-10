@@ -6,15 +6,13 @@
 
 @section('content')
     <h1>{{ $meta_data->title }}</h1>
-    <h2>Octopath: <a href="{{ $octopath_url }}">{{ $octopath_url }}</a></h2>
+    <h5><a href="{{ $octopath_url }}">{{ $octopath_url }}</a></h5>
+    <hr>
     @if(count($octopath_datasets) > 0)
         @foreach($octopath_datasets as $octopath)
             <h3>{{ $octopath->title }}</h3>
-            <ul>
-                <li><b>link</b>: <a href="{{ $octopath->link }}">{{ $octopath->link }}</a></li>
-                <li><b>description</b>: {{ $octopath->description }}</li>
-                <li><b>diaplay_order</b>: {{ $octopath->display_order }}</li>
-            </ul>
+            <h4>{{ $octopath->description }}</h4>
+            <h5><a href="{{ $octopath->link }}">{{ $octopath->link }}</a></h5>
         @endforeach
     @endif
 @endsection

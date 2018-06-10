@@ -14,7 +14,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>{!! link_to_route('octopaths.create', 'MERGE') !!}</li>
                     <li>{!! link_to_route('octopaths.dashboard', 'DASHBOARD') !!}</li>
-                    <li>{!! link_to_route('signup.get', 'SIGNUP/LOGIN') !!}</li>
+                    @if(Auth::check())
+                        <li>{{ link_to_route('logout.get', 'LOGOUT') }}
+                        <li><a href="#" class="text-uppercase">{{ Auth::user()->name }}</a></li>
+                    @else
+                        <li>{!! link_to_route('signup.get', 'SIGNUP/LOGIN') !!}</li>
+                    @endif
                 </ul>
             </div>
         </div>

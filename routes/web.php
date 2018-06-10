@@ -11,6 +11,11 @@
 |
 */
 
+//user registration
+Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::post('signup', 'Auth\RegistrationController@register')->name('signup.post');
+
+//octopath main
 Route::get('/', 'OctopathsController@index')->name('octopaths.index');
 
 Route::get('/dashboard', 'OctopathsController@show_dashboard')->name('octopaths.dashboard');

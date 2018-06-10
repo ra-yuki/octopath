@@ -14,7 +14,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>{!! link_to_route('octopaths.create', 'MERGE') !!}</li>
                     <li>{!! link_to_route('octopaths.dashboard', 'DASHBOARD') !!}</li>
-                    <li><a href='#'>SIGNUP/LOGIN</a></li>
+                    <li>{!! link_to_route('signup.get', 'SIGNUP/LOGIN') !!}</li>
                 </ul>
             </div>
         </div>

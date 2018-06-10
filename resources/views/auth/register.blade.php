@@ -32,7 +32,7 @@
                 {!! Form::submit('SIGNUP', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
 
-            <p>ALREADY A MEMBER? {!! link_to_route('login.get', 'LOGIN') !!}</p>
+            <p>ALREADY A MEMBER? {!! link_to_route('login', 'LOGIN') !!}</p>
         </div>
     </div>
 @endsection

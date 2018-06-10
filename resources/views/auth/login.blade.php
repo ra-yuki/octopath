@@ -22,7 +22,7 @@
                 {!! Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
 
-            <p>NEW USER? {!! link_to_route('signup.get', 'SIGNUP') !!}</p>
+            <p>NOT A MEMBER? {!! link_to_route('signup.get', 'SIGNUP') !!}</p>
         </div>
     </div>
 @endsection

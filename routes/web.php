@@ -11,19 +11,23 @@
 |
 */
 
+//*-- authentication --*//
 //user registration
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 //login/out
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.get');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-//octopath main
-Route::get('/', 'OctopathsController@index')->name('octopaths.index');
+//*--octopath main--*//
+//need an auuthentication for this grouped routes
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/dashboard', 'OctopathsController@show_dashboard')->name('octopaths.dashboard');
+});
 
-Route::get('/dashboard', 'OctopathsController@show_dashboard')->name('octopaths.dashboard');
+Route::get('/', 'OctopathsController@index')->name('octopaths.index');
 
 Route::get('/create', 'OctopathsController@create')->name('octopaths.create');
 

@@ -40,3 +40,10 @@ yarn-error.log
 *.eot
 *.ttf
 *.woff
+
+#visual studio code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

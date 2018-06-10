@@ -107,7 +107,6 @@ class OctopathsController extends Controller
         $meta_datasets = new MetaDataset();
         $meta_datasets->octopath = $octopath;
         $meta_datasets->title = $_POST['octopath_title'];
-        $meta_datasets->enabled = true;
         $meta_datasets->retention_date = $_POST['retention_date'];
         $meta_datasets->save();
         

@@ -8,6 +8,8 @@ use App\Libraries\OctopathHelper;
 
 class Octopath extends Model
 {
+    protected $table = 'octopath_datasets';
+
     public static function get_octopath_url($octopath){
         return OctopathHelper::create_octopath_url($octopath);
     }

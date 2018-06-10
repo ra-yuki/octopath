@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MetaDataset extends Model
 {
-    protected $table = 'meta_datasets';
+    protected $table = 'octopath_meta_datasets';
     
     //return octopaths (array(string))
     public static function get_expired_octopaths(){

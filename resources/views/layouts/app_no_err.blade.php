@@ -23,8 +23,6 @@
         |  - (position)-(role)
         -->
         @include('commons.navbar')
-
-        @include('commons.error')
         
         @yield('content')
         

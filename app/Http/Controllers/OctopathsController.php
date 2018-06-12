@@ -82,8 +82,9 @@ class OctopathsController extends Controller
             
             //detecting no http/https associated links
             if(!preg_match("/^((https|http):\/\/)(.*)\.([a-z]{2,3})(.*)$/i", $_POST['link'. ($i+1)], $output_array)){
-                //echo $_POST['link'. ($i+1)]. " is bullshit link<br>";
-                return redirect('/create');
+                return redirect()->back()->withErrors([
+                    'msg' => "Invalid link is found (". $_POST['link'. ($i+1)]. "). Make sure to include 'http://' or 'https://'.",
+                ]);
             }
         }
         
@@ -131,6 +132,11 @@ class OctopathsController extends Controller
      */
     public function show($octopath)
     {
+        //exception handling
+        if(count(MetaDataset::where('octopath', '=', $octopath)->get()) === 0){
+            abort(404);
+        }
+
         //*-- model --*//
         //get metadata of octopath
         $meta_data = MetaDataset::where('octopath', '=', $octopath)->get();
@@ -145,7 +151,7 @@ class OctopathsController extends Controller
         
         //*-- view --*//
         return view('octopaths.show', [
-            'meta_data' => $meta_data[0],
+            'meta_dataset' => $meta_data[0],
             'octopath_datasets' => $octopath_datasets,
             'octopath_url' => $octopath_url,
         ]);
@@ -159,18 +165,25 @@ class OctopathsController extends Controller
      */
     public function edit($octopath)
     {
-        $octopath_datasets = Octopath::where('octopath', '=', $octopath)->get();
+        $octopath_datasets = Octopath::where('octopath', '=', $octopath)->orderBy('display_order', 'asc')->get();
         $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get()[0];
         
-        //redirect to login if the octopath is user_id specified, and the user operating is NOT matched with the id
+        //redirect to lonot authorized page if the octopath is user_id specified, and the user operating is NOT matched with the id
         $condition = ($meta_dataset->user_id != null) && ( !Auth::check() || ($meta_dataset->user_id != Auth::user()->id) );
         if($condition){
-            return view('generals.not_authorized');
+            abort(403);
         }
+
+        //get merge_num
+        $merge_num = (isset($_GET['merge_num']) && ($_GET['merge_num'] > 0))
+             ? OctopathHelper::get_limited_value($_GET['merge_num'], OctopathConfig::MAX_MERGE_NUM) : count($octopath_datasets);
 
         return view('octopaths.edit', [
             'octopath_datasets' => $octopath_datasets,
             'meta_dataset' => $meta_dataset,
+            'merge_num' => $merge_num,
+            'merge_num_plus_one' => ($merge_num + 1),
+            'merge_num_minus_one' => ($merge_num - 1),
         ]);
     }
 
@@ -187,23 +200,57 @@ class OctopathsController extends Controller
         for($i=0; $i<$request->merge_num; $i++){
             //detecting no http/https associated links
             if(!preg_match("/^((https|http):\/\/)(.*)\.([a-z]{2,3})(.*)$/i", $_POST['link'. ($i+1)], $output_array)){
-                return redirect('/'. $octopath.'/edit');
+                return redirect()->back()->withErrors([
+                    'msg' => "Invalid link is found (". $_POST['link'. ($i+1)]. "). Make sure to include 'http://' or 'https://'.",
+                ]);
+            }
+        }
+
+        //get original record nums before record modification
+        $octopath_table_count_original = Octopath::where('octopath', '=', $octopath)->count();
+
+        //delete omitted record on create form page
+        $octopath_table_count = Octopath::where('octopath', '=', $octopath)->count();
+        if($request->merge_num < $octopath_table_count){
+            $octopath_table = Octopath::where('octopath', '=', $octopath)->orderBy('display_order', 'desc')->get();
+            $offset = $octopath_table_count-$request->merge_num;
+            for($i=0; $i<$offset; $i++){
+                $octopath_table[$i]->delete();
             }
         }
         
         //Update requested data to octopaths table
         //octopaths table
-        $octopath_tables = Octopath::where('octopath', '=', $octopath)->orderBy('display_order')->get();
-        for($i=0; $i<count($octopath_tables); $i++){
+        $octopath_table = Octopath::where('octopath', '=', $octopath)->orderBy('display_order')->get();
+        $octopath_table_count = count($octopath_table);
+        for($i=0; $i<$octopath_table_count; $i++){
             //assign values
-            $octopath_tables[$i]->link = $_POST['link'. ($i+1)];
-            $octopath_tables[$i]->title = $_POST['title'. ($i+1)];
-            $octopath_tables[$i]->description = $_POST['description'. ($i+1)];
-            $octopath_tables[$i]->octopath = $octopath;
+            $octopath_table[$i]->link = $_POST['link'. ($i+1)];
+            $octopath_table[$i]->title = $_POST['title'. ($i+1)];
+            $octopath_table[$i]->description = $_POST['description'. ($i+1)];
+            $octopath_table[$i]->octopath = $octopath;
 
             //save to octopaths table
-            $octopath_tables[$i]->save();
+            $octopath_table[$i]->save();
         }
+
+        //Create new records if merge_num exceeded the original record nums
+        if($request->merge_num > $octopath_table_count_original){
+            $offset = $request->merge_num - $octopath_table_count_original;
+            for($i=0; $i<$offset; $i++){
+                $table = new Octopath();
+
+                $index = $octopath_table_count_original+$i+1;
+                $table->link = $_POST['link'. ($index)];
+                $table->title = $_POST['title'. ($index)];
+                $table->description = $_POST['description'. ($index)];
+                $table->octopath = $octopath;
+                $table->display_order = $index - 1;
+
+                $table->save();
+            }
+        }
+
         //here
         //meta_datasets
         $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get()[0];
@@ -211,7 +258,7 @@ class OctopathsController extends Controller
         $meta_dataset->title = $_POST['octopath_title'];
         $meta_dataset->retention_date = $_POST['retention_date'];
         $meta_dataset->save();
-        
+
         return redirect('/dashboard');
     }
 
@@ -223,10 +270,19 @@ class OctopathsController extends Controller
      */
     public function destroy($octopath)
     {
+        //redirect to not_authorized page if the octopath is user_id specified, and the user operating is NOT matched with the id
+        $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get()[0];
+        $condition = ($meta_dataset->user_id != null) && ( !Auth::check() || ($meta_dataset->user_id != Auth::user()->id) );
+        if($condition){
+            abort(403);
+        }
+
         Octopath::delete_by_octopaths(array($octopath));
         MetaDataset::delete_by_octopaths(array($octopath));
 
-        return redirect()->back();
+        return view('generals.destroy', [
+            'octopath' => $octopath,
+        ]);
     }
     
     public function result($octopath){

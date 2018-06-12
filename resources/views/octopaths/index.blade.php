@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_no_err')
 
 @section('title')
     Home
@@ -41,25 +41,30 @@
         <div id="bottom-container" class="container">
             <div id="bottom-merge_links" class="col-xs-8 col-xs-offset-2">
                 <h1>MERGE YOUR: <span class="emphasize">WHATEVER</span></h1>
+                {{-- error message --}}
+                @include('commons.error')
                 {!! Form::model($octopath_dataset, ['route'=>'octopaths.store']) !!}
-                    {!! Form::hidden('octopath_title', '') !!}
-                    {!! Form::hidden('retention_date', $default_retention_date) !!}
+                {!! Form::hidden('retention_date', $default_retention_date) !!}
 
-                    @for($i=0; $i<$merge_num; $i++)
-                        <div id="bottom-form_input" class="col-xs-12">
-                            {{-- title form --}}
-                            {!! Form::hidden('title'. ($i+1), '') !!}
-                            
-                            <div class="form-group">
-                                {{-- link form --}}
-                                {!! Form::label('link'. ($i+1), 'LINK'. ($i+1)) !!}
-                                {!! Form::text('link'. ($i+1), null, ['class' => 'form-control']) !!}
-                            </div>
-    
-                            {{-- description form --}}
-                            {!! Form::hidden('description'. ($i+1), '') !!}
+                    <div id="bottom-form_input" class="col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('octopath_title', 'TITLE') !!}
+                            {!! Form::text('octopath_title', null, ['class' => 'form-control']) !!}
                         </div>
-                    @endfor
+                        @for($i=0; $i<$merge_num; $i++)
+                                {{-- title form --}}
+                                {!! Form::hidden('title'. ($i+1), 'LINK'. ($i+1)) !!}
+                                
+                                <div class="form-group">
+                                    {{-- link form --}}
+                                    {!! Form::label('link'. ($i+1), 'LINK'. ($i+1)) !!}
+                                    {!! Form::text('link'. ($i+1), null, ['class' => 'form-control']) !!}
+                                </div>
+        
+                                {{-- description form --}}
+                                {!! Form::hidden('description'. ($i+1), '') !!}
+                        @endfor
+                    </div>
                     
                     {{-- send merge number(how many links to merge) --}}
                     {{-- {!! Form::text('merge_num', $merge_num) !!} --}}

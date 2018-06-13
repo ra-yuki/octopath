@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="{{ asset('img/logo.png') }}" alt""> OCTOPATH</a>
+                <a class="navbar-brand" href="/"><img src="{{ asset('img/octopath/octopath_logo.png') }}" alt"">&nbsp;&nbsp;OCTOPATH</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">

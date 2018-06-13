@@ -12,7 +12,7 @@
         @foreach($octopath_datasets as $octopath)
             <h3>{{ $octopath->title }}</h3>
             <h4>{{ $octopath->description }}</h4>
-            <h5><a href="{{ $octopath->link }}" target="_blank">{{ $octopath->link }}</a></h5>
+            <h5><a id="{{$octopath->id}}" href="{{ $octopath->link }}" target="{{$octopath->id}}">{{ $octopath->link }}</a></h5>
         @endforeach
     @endif
     @if (Auth::check())

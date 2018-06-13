@@ -5,15 +5,22 @@
 @endsection
 
 @section('head-plus')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+    <script>var assetBasePath = "{{ asset('') }}"; //used in sketch_top.js to anchor img files</script>
+    <script src="{{ asset('js/sketch_top.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
 @section('content')
+    <!-- inserts p5 sketch here -->
+    <div id="sketch-holder"></div>
+    <!-- ends p5 sketch here -->
+
     <div id="top-container_wrapper">
         <div id="top-container" class="container">
             <div id="top-welcome_screen" class="col-xs-12">
-                <h1>PUT ONCE, LINK ANYWHERE.</h1>
-                <h2>STAY AWAY FROM MULTIPLE LENGTHY LINKS, AND DRIVE YOUR COMMUNICATION EFFICIENCY.</h2>
+                <h1><span>PUT ONCE, LINK ANYWHERE.</span></h1>
+                <h2><span>STAY AWAY FROM MULTIPLE LENGTHY LINKS, AND DRIVE YOUR COMMUNICATION EFFICIENCY.</span></h2>
                 <p><a href="/create" class="btn btn-default">MERGE LINKS</a></p>
             </div>
         </div>
@@ -26,7 +33,7 @@
                 <figcaption>DOCUMENT, COOKING RECIPE, YOUTUBE VIDEO...</figcaption>
             </div>
             <div class="col-xs-4">
-                <h1>2. PASTE THEM</h1>
+                <h1>2. PASTE IT</h1>
                 <p><img src="{{ asset('img/paste_dark.png') }}" alt=""></p>
                 <figcaption>ON VIBER, WEBSITE, OR EVEN YOUR PORTOFOLIO</figcaption>
             </div>

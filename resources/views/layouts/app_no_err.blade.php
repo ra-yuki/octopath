@@ -24,6 +24,8 @@
         -->
         @include('commons.navbar')
         
+        <div id="sketch-holder"></div>
+
         @yield('content')
         
         @include('commons.footer')

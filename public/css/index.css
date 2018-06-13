@@ -1,18 +1,36 @@
 /*////////////////////
 // Static Style
 ////////////////////*/
+/*canvas*/
+#sketch-holder {
+    background-color: #000b29; /*should not be like this, wanna cancel the whole space this makes here*/
+}
+
+#defaultCanvas0 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
 /* top */
 #top-container_wrapper {
     background-color: #000b29;
     /*background-image: url("../img/logo.png");*/
+    top: -300px;
 }
 
 #top-welcome_screen {
-    background-color: #000b29;
+    background-color: rgba(0, 255, 0, 0);
+}
+
+#top-welcome_screen span {
+    background-color: rgba(0, 11, 41, 0.4);
+    padding: 5px 20px;
+    display:inline-block;
 }
 
 #top-welcome_screen h1 {
-    padding-top: 120px;
+    margin-top: 310px;
     font-size: 55px;
     text-align: center;
     color: #f8f5f2;
@@ -215,10 +233,10 @@
 @media (min-width: 1000px) {
     /* top */
     #top-container_wrapper {
-        height: 500px;
+        height: 700px;
     }
     #top-welcome_screen {
-        height: 500px;
+        height: 700px;
     }
     
     /* middle */

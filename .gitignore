@@ -13,11 +13,11 @@ yarn-error.log
 .env
 
 #images
-*.jpg
-*.gif
-*.png
-*.svg
-*.ico
+#*.jpg
+#*.gif
+#*.png
+#*.svg
+#*.ico
 
 #videos
 *.wmv

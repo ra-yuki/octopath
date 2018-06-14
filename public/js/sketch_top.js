@@ -15,6 +15,7 @@ const B_COLOR = {'r': 237, 'g': 184, 'b': 61};//{'r': 215, 'g': 0, 'b': 38};//{'
 var b = [];
 //octopath variables
 const O_COLOR = {'r': 248, 'g': 245, 'b': 242};//{'r': 237, 'g': 184, 'b': 61};
+const C_INV_VAL = 60;
 var oct;
 
 function preload(){
@@ -88,6 +89,18 @@ function Vec2(x, y){
 function DrawEllipse(position, size){
     ellipse(position.x, position.y, size, size);
 }
+
+function GetLimited(val, min, max){
+    if(val < min){
+        val = min;
+    }
+    else if(val > max){
+        val = max;
+    }
+    
+    return val;
+}
+
 class Octopath {
     constructor(position, img){
         this.position = position;
@@ -115,7 +128,12 @@ class Bubble {
         this.position = position;
         this.size = random(B_SIZE['min'], B_SIZE['max']);
         this.speed = B_SPD * this.size; //vary the speed depending on the size
-        this.color = color(B_COLOR['r'], B_COLOR['g'], B_COLOR['b']);
+        this.color = color(
+            GetLimited(B_COLOR['r'] - C_INV_VAL/(this.speed), 0, 255),
+            GetLimited(B_COLOR['g'] - C_INV_VAL/(this.speed), 0, 255),
+            GetLimited(B_COLOR['b'] - C_INV_VAL/(this.speed), 0, 255)
+        );
+        console.log(red(this.color)+", "+green(this.color)+", "+blue(this.color));
     }
 
     get Position(){

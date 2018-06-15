@@ -1,28 +1,39 @@
 @extends('layouts.app')
 
+@section('title')
+    Login
+@endsection
+
+@section('head-plus')
+    <link rel="stylesheet" href={{ asset('css/signup-login-form.css') }}>
+@endsection
+
 @section('content')
-    <div class="text-center">
-        <h1>LOGIN</h1>
-    </div>
+    <div id="top-container-wrapper">
+        <div id="top-form-wrapper" class="container text-uppercase">
+            <div id="top-title" class="text-center">
+                <h1>LOGIN</h1>
+            </div>
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+            <div id="top-form" class="col-xs-12 col-md-10 col-md-offset-1">
+                {!! Form::open(['route' => 'login.post']) !!}
+                    <div class="form-group col-xs-12">
+                        {!! Form::label('email', 'EMAIL') !!}
+                        {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'email@example.com']) !!}
+                    </div>
 
-            {!! Form::open(['route' => 'login.post']) !!}
-                <div class="form-group">
-                    {!! Form::label('email', 'EMAIL') !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
-                </div>
+                    <div class="form-group col-xs-12">
+                        {!! Form::label('password', 'PASSWORD') !!}
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                    </div>
 
-                <div class="form-group">
-                    {!! Form::label('password', 'PASSWORD') !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
-                </div>
+                    <div id="submit" class="form-group col-xs-12">
+                        {!! Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) !!}
+                    </div>
+                {!! Form::close() !!}
 
-                {!! Form::submit('LOGIN', ['class' => 'btn btn-primary btn-block']) !!}
-            {!! Form::close() !!}
-
-            <p>NOT A MEMBER? {!! link_to_route('signup.get', 'SIGNUP') !!}</p>
+                <p class="col-xs-12">NOT A MEMBER YET? {!! link_to_route('signup.get', 'SIGNUP') !!}</p>
+            </div>
         </div>
     </div>
 @endsection

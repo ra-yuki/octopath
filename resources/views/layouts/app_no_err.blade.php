@@ -13,6 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
         <!-- Custom CSS -->
+        <link rel="stylesheet" href={{ asset('css/commons.css') }}>
         <link rel="stylesheet" href={{ asset('css/app_.css') }}>
         
         @yield('head-plus')

@@ -256,9 +256,11 @@
     /* bottom */
     #bottom-container_wrapper {
         height: 100%;
+        min-height: 500px;
     }
     
     #bottom-merge_links {
         height: 100%;
+        min-height: 500px;
     }
 }

@@ -1,0 +1,35 @@
+#top-container-wrapper {
+    color: #f8f5f2;
+    background-color: #000b29;
+    padding: 0 0 50px 0;
+}
+
+#top-title h1 {
+    margin: 30px 0 20px 0;
+}
+
+#top-form-wrapper {
+    height: 100%;
+    min-height: 800px;
+}
+
+#top-form {
+    background-color: #f8f5f2;
+    color: #000b29;
+    padding: 10px 0 20px 0;
+}
+#top-form p a {
+    color: #d70026;
+}
+
+#submit {
+    margin: 10px 0;
+}
+#submit input {
+    padding: 9px 0;
+    background-color: #d70026;
+    border: none;
+}
+#submit input:hover {
+    background-color: rgb(170, 1, 32);
+}

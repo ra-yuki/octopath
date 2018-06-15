@@ -1,24 +1,50 @@
 @extends('layouts.app')
 
+@section('title')
+    Dashboard
+@endsection
+
+@section('head-plus')
+    <link rel="stylesheet" href={{ asset('css/dashboard.css') }}>
+@endsection
+
 @section('content')
-    <h1>Dashboard</h1>
-    
-    @if(count($meta_datasets) > 0)
-        @foreach($meta_datasets as $meta_dataset)
-            <hr>
-            
-            @if($meta_dataset->title != "")
-                <h3>{{ $meta_dataset->title }} {!! link_to_route('octopaths.show', 'SEE MORE', ['octopath' => $meta_dataset->octopath]) !!}</h3>
-            @else
-                <h3>*NO TITLE  {!! link_to_route('octopaths.show', 'SEE MORE', ['octopath' => $meta_dataset->octopath]) !!}</h3>
-            @endif
-            <p>{!! link_to_route('octopaths.edit', 'EDIT', ['octopath' => $meta_dataset->octopath], ['class' => 'btn btn-primary']) !!}</p>
-            {!! Form::open([ 'route' => ['octopaths.destroy', $meta_dataset->octopath], 'method' => 'delete' ]) !!}
-                {!! Form::submit('DELETE', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
-        @endforeach
-    @endif
-    <br>
+    <div id="top-container-wrapper text-lowercase">
+        <div class="container">
+            <div id="top-title" class="text-center text-uppercase">
+                <h1>Dashboard</h1>
+            </div>
+            <div id="top-table" class="col-xs-12">
+                <table class="table col-xs-12">
+                    <tbody class="">
+                        @if(count($meta_datasets) > 0)
+                            @foreach($meta_datasets as $meta_dataset)
+                                <tr>
+                                    {{-- edit/delete --}}
+                                    <td>
+                                        {!! link_to_route('octopaths.show', '+', ['octopath' => $meta_dataset->octopath], ['class' => 'btn btn-default']) !!}
+                                    </td>
+                                    {{-- title --}}
+                                    <td>
+                                        @if($meta_dataset->title != "")
+                                            {{ $meta_dataset->title }}
+                                        @else
+                                            *NO TITLE*
+                                        @endif
+                                    </td>
+                                    {{-- created at --}}
+                                    <td class="text-right">
+                                        merge at {{ $meta_dataset->created_at }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     
     <!--
     <h2>octopaths table</h2>

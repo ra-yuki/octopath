@@ -34,7 +34,7 @@
                                     </td>
                                     {{-- created at --}}
                                     <td class="text-right">
-                                        merge at {{ $meta_dataset->created_at }}
+                                        merged at {{ $meta_dataset->created_at }}
                                     </td>
                                 </tr>
                             @endforeach

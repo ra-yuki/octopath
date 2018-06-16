@@ -15,7 +15,7 @@ function searchOctopaths() {
     comment = document.getElementById("comment");
 
     //exception handling
-    var invalidChars = /(^ )|[^a-z0-9!?\-_ \'\"\(\)#]/i;
+    var invalidChars = /(^ )|[^a-z0-9!?\-_ \'\"#]/i;
     if( (result = inputVal.search(invalidChars)) != -1){ comment.innerHTML = "<i>Invalid search query detected: ' " + inputVal[result] + " '</i>"; return -1; }
 
     //search given query with octopaths on table

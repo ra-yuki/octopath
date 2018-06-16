@@ -133,7 +133,7 @@ class Bubble {
             GetLimited(B_COLOR['g'] - C_INV_VAL/(this.speed), 0, 255),
             GetLimited(B_COLOR['b'] - C_INV_VAL/(this.speed), 0, 255)
         );
-        console.log(red(this.color)+", "+green(this.color)+", "+blue(this.color));
+        // console.log(red(this.color)+", "+green(this.color)+", "+blue(this.color));
     }
 
     get Position(){

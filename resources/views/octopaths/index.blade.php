@@ -27,17 +27,17 @@
     </div>
     <div id="middle-container_wrapper">
         <div id="middle-container" class="container">
-            <div class="col-xs-4">
+            <div class="col-xs-12 col-md-4">
                 <h1>1. MERGE LINKS</h1>
                 <p><img src="{{ asset('img/merge_red.png') }}" alt=""></p>
                 <figcaption>DOCUMENT, COOKING RECIPE, YOUTUBE VIDEO...</figcaption>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-12 col-md-4">
                 <h1>2. PASTE IT</h1>
                 <p><img src="{{ asset('img/paste_dark.png') }}" alt=""></p>
                 <figcaption>ON VIBER, WEBSITE, OR EVEN YOUR PORTOFOLIO</figcaption>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-12 col-md-4">
                 <h1>3. ALL SET!</h1>
                 <p><img src="{{ asset('img/octopath_red.png') }}" alt=""></p>
                 <figcaption>BOOOM! SPREAD YOUR PATHS TO THE WORLD! :)</figcaption>
@@ -46,7 +46,7 @@
     </div>
     <div id="bottom-container_wrapper">
         <div id="bottom-container" class="container">
-            <div id="bottom-merge_links" class="col-xs-8 col-xs-offset-2">
+            <div id="bottom-merge_links" class="col-xs-12 col-md-8 col-md-offset-2">
                 <h1>MERGE YOUR: <span class="emphasize">WHATEVER</span></h1>
                 {{-- error message --}}
                 @include('commons.error')
@@ -77,7 +77,9 @@
                     {{-- {!! Form::text('merge_num', $merge_num) !!} --}}
                     <input type="hidden" name="merge_num" value="{{ $merge_num }}">
                     
-                    {!! Form::submit('MERGE LINKS', ['id' => 'submit-btn', 'class' => 'btn col-xs-2 col-xs-offset-5']) !!}
+                    <div class="col-xs-12">
+                        {!! Form::submit('MERGE LINKS', ['id' => 'submit-btn', 'class' => 'btn btn-default btn-block']) !!}
+                    </div>
                 {!! Form::close() !!}            
             </div>
         </div>

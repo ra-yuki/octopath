@@ -15,16 +15,17 @@
 /* top */
 #top-container_wrapper {
     background-color: #000b29;
-    /*background-image: url("../img/logo.png");*/
     top: -300px;
 }
 
 #top-welcome_screen {
     background-color: rgba(0, 255, 0, 0);
+    min-height: 600px;
+    height: 100%;
 }
 
 #top-welcome_screen span {
-    background-color: rgba(0, 11, 41, 0.4);
+    background-color: rgba(0, 11, 41, 0.5);
     padding: 5px 20px;
     display:inline-block;
 }
@@ -61,6 +62,12 @@
 /* middle */
 #middle-container_wrapper {
     background-color: #f8f5f2;
+    min-height: 500px;
+    height: 100%;
+}
+
+#middle-container {
+    margin-bottom: 42px;
 }
 
 #middle-container h1 {
@@ -93,6 +100,8 @@
 /* bottom */
 #bottom-container_wrapper {
     background-color: #000b29;
+    min-height: 500px;
+    height: 100%;
 }
 
 #bottom-container {
@@ -110,9 +119,9 @@
 }
 
 #submit-btn {
-    margin-top: 21px;
+    margin-top: 8px;
     margin-bottom: 21px;
-    padding: 15px 0px;
+    padding: 8px 0px;
     background-color: #d70026;
     color: #f8f5f2;
     border: none;
@@ -133,134 +142,80 @@
 ////////////////////*/
 @media (min-width: 0px) {
     /* top */
-    #top-container_wrapper {
-        height: 300px;
-    }
     #top-welcome_screen {
-        height: 300px;
+        min-height: 50px;
+        height: 100%;
     }
-    
+    #top-welcome_screen h1 {
+        margin-top: 200px;
+        font-size: 38px;
+    }
+    #top-welcome_screen h2 {
+        font-size: 18px;
+    }
+    #top-welcome_screen a {
+        margin-top: 10px;
+        margin-bottom: 35px;
+    }
     /* middle */
-    #middle-container_wrapper {
-        height: 300px;
+    #middle-container h1 {
+        font-size: 24px;
     }
-    #middle-instruction {
-        height: 300px;
-    }
-    #middle-instruction2 {
-        height: 300px;
-    }
-    #middle-instruction3 {
-        height: 300px;
+    #middle-container figcaption {
+        font-size: 18px;
     }
     
     /* bottom */
-    #bottom-container_wrapper {
-        height: 300px;
-    }
-    
-    #bottom-merge_links {
-        height: 300px;
+    #bottom-merge_links h1 {
+        font-size: 32px;
     }
 }
 
 @media (min-width: 500px) {
     /* top */
-    #top-container_wrapper {
-        height: 300px;
-    }
-    #top-welcome_screen {
-        height: 300px;
-    }
-    
+
     /* middle */
-    #middle-container_wrapper {
-        height: 300px;
-    }
-    #middle-instruction {
-        height: 300px;
-    }
-    #middle-instruction2 {
-        height: 300px;
-    }
-    #middle-instruction3 {
-        height: 300px;
-    }
     
     /* bottom */
-    #bottom-container_wrapper {
-        height: 300px;
-    }
-    
-    #bottom-merge_links {
-        height: 300px;
-    }
 }
 
 @media (min-width: 750px) {
     /* top */
-    #top-container_wrapper {
-        height: 400px;
-    }
     #top-welcome_screen {
-        height: 400px;
+        min-height: 600px;
+        height: 100%;
+    }
+
+    #top-welcome_screen h1 {
+        margin-top: 310px;
+        font-size: 55px;
+    }
+    
+    #top-welcome_screen h2 {
+        font-size: 21px;
+    }
+    #top-welcome_screen a {
+        margin-top: 30px;
     }
     
     /* middle */
-    #middle-container_wrapper {
-        height: 400px;
+    #middle-container h1 {
+        font-size: 32px;
     }
-    #middle-instruction {
-        height: 400px;
-    }
-    #middle-instruction2 {
-        height: 400px;
-    }
-    #middle-instruction3 {
-        height: 400px;
+    #middle-container figcaption {
+        font-size: 21px;
     }
     
     /* bottom */
-    #bottom-container_wrapper {
-        height: 400px;
-    }
-    
-    #bottom-merge_links {
-        height: 400px;
+    #bottom-merge_links h1 {
+        font-size: 49px;
     }
 }
 
 @media (min-width: 1000px) {
     /* top */
-    #top-container_wrapper {
-        height: 700px;
-    }
-    #top-welcome_screen {
-        height: 700px;
-    }
-    
+
     /* middle */
-    #middle-container_wrapper {
-        height: 500px;
-    }
-    #middle-instruction {
-        height: 500px;
-    }
-    #middle-instruction2 {
-        height: 500px;
-    }
-    #middle-instruction3 {
-        height: 500px;
-    }
     
     /* bottom */
-    #bottom-container_wrapper {
-        height: 100%;
-        min-height: 500px;
-    }
-    
-    #bottom-merge_links {
-        height: 100%;
-        min-height: 500px;
-    }
 }

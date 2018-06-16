@@ -6,17 +6,36 @@
 
 @section('head-plus')
     <link rel="stylesheet" href={{ asset('css/dashboard.css') }}>
+    <script src="{{ asset('js/search.js') }}"></script>
 @endsection
 
 @section('content')
     <div id="top-container-wrapper text-lowercase">
         <div class="container">
+            {{-- title --}}
             <div id="top-title" class="text-center text-uppercase">
                 <h1>Dashboard</h1>
             </div>
+
+            {{-- search field --}}
+            <div class="form-group col-xs-12">
+                {!! 
+                    Form::text('search-field', null, [
+                        'id' => 'search-field',
+                        'class' => 'form-control',
+                        'placeholder' => 'Search Octopath',
+                        'onkeyup' => 'searchOctopaths()',
+                    ])
+                !!}
+            </div>
+
+            {{-- comments from searchOctopath() if nothing found --}}
+            <p id="comment" class="text-center"></p>
+
+            {{-- octopath table starts --}}
             <div id="top-table" class="col-xs-12">
                 <table class="table col-xs-12">
-                    <tbody class="">
+                    <tbody id="octopath-table">
                         @if(count($meta_datasets) > 0)
                             @foreach($meta_datasets as $meta_dataset)
                                 <tr>
@@ -27,14 +46,15 @@
                                     {{-- title --}}
                                     <td>
                                         @if($meta_dataset->title != "")
-                                            {{ $meta_dataset->title }}
+                                            <span class="search-subject">{{ $meta_dataset->title }}</span>
                                         @else
-                                            *NO TITLE*
+                                            <span class="search-subject">*NO TITLE*</span>
                                         @endif
                                     </td>
                                     {{-- created at --}}
                                     <td class="text-right">
-                                        merged at {{ $meta_dataset->created_at }}
+                                        <?php $created_at = explode(' ', $meta_dataset->created_at)[0]; ?>
+                                        merged on {{ $created_at }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -42,6 +62,7 @@
                     </tbody>
                 </table>
             </div>
+            {{-- end of octopath table --}}
         </div>
     </div>
 

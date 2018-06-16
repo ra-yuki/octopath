@@ -272,6 +272,9 @@ class OctopathsController extends Controller
     {
         //redirect to not_authorized page if the octopath is user_id specified, and the user operating is NOT matched with the id
         $meta_dataset = MetaDataset::where('octopath', '=', $octopath)->get()[0];
+        $title = $meta_dataset->title;
+
+        //exception handling
         $condition = ($meta_dataset->user_id != null) && ( !Auth::check() || ($meta_dataset->user_id != Auth::user()->id) );
         if($condition){
             abort(403);
@@ -280,9 +283,7 @@ class OctopathsController extends Controller
         Octopath::delete_by_octopaths(array($octopath));
         MetaDataset::delete_by_octopaths(array($octopath));
 
-        return view('generals.destroy', [
-            'octopath' => $octopath,
-        ]);
+        return redirect()->route('users.dashboard')->with('status', "'$title'($octopath) has been deleted successfully.");
     }
     
     public function result($octopath){

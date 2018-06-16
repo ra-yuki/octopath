@@ -1,4 +1,4 @@
-@extends('layouts.app_no_err')
+@extends('layouts.app')
 
 @section('title')
     Merge
@@ -14,10 +14,7 @@
             <div id="top-title" class="col-xs-12">
                 <h1 class="text-center">MERGE LINKS</h1>
             </div>
-            <div id="top-form" class="col-xs-12 col-md-10 col-md-offset-1">
-                {{-- error message --}}
-                @include('commons.error')
-                
+            <div id="top-form" class="col-xs-12 col-md-10 col-md-offset-1">                
                 {{-- Octopath creation form --}}
                 {!! Form::model($octopath_dataset, ['route'=>'octopaths.store']) !!}
                     

@@ -25,6 +25,7 @@
         -->
         @include('commons.navbar')
 
+        @include('commons.status')
         @include('commons.error')
         
         @yield('content')

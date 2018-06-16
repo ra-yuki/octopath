@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    OctpathURL
+    {{ $meta_dataset->title }}
 @endsection
 
 @section('head-plus')

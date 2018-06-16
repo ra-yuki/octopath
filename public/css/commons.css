@@ -84,3 +84,42 @@ body{
 .btn-transparent {
 
 }
+
+/*table layout*/
+table a {
+    /* color: #f8f5f2; */
+}
+table a:hover {
+    /* color: #f8f5f2; */
+}
+table tbody tr {
+    font-size: 15px;
+    border-top: 1px solid #f8f5f2;
+    border-left: 3px solid black;
+}
+table tbody tr:hover {
+    /* background-color: #d70026; #edb83d*/
+    background-color: rgba(248, 245, 243, 0.2);
+    border-left: 3px solid #edb83d;
+}
+
+/*button layout*/
+.btn-default {
+    padding: 0px 12px;
+    font-size: 15px;
+    background-color: #d70026;
+    border: none;
+    color: #f8f5f2;
+}
+.btn-default:active {
+    background-color: #d70026;
+    color: #f8f5f2;
+}
+.btn-default:visited {
+    background-color: #d70026;
+    color: #f8f5f2;
+}
+.btn-default:hover {
+    background-color: rgb(170, 1, 32);
+    color: #f8f5f2;
+}

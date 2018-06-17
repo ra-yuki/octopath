@@ -49,12 +49,12 @@
                                 <h4>link {{ $i+1 }}</h4>
                                 {{-- link form --}}
                                 {{-- {!! Form::label('link'. ($i+1), 'Link'. ($i+1)) !!} --}}
-                                title
+                                url
                                 {!! Form::text( 'link'. ($i+1), null, ['class' => 'form-control input-md', 'placeholder' => 'Rakuten'] ) !!}
                                 
                                 {{-- title form --}}
                                 {{-- {!! Form::label('title'. ($i+1), 'Title'. ($i+1)) !!} --}}
-                                url
+                                title
                                 {!! Form::text( 'title'. ($i+1), null, ['class' => 'form-control input-md', 'placeholder' => 'https://www.rakuten.com/'] ) !!}
                                 
                                 

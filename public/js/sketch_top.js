@@ -17,6 +17,9 @@ var b = [];
 const O_COLOR = {'r': 248, 'g': 245, 'b': 242};//{'r': 237, 'g': 184, 'b': 61};
 const C_INV_VAL = 60;
 var oct;
+//text cycle
+var t;
+var textEle, textHead, textInterval, texts;
 
 function preload(){
     img = loadImage(assetBasePath+"img/octopath/octopath_s.png");
@@ -48,6 +51,8 @@ function Init(){
     }
 
     oct = new Octopath(new Vec2(width*0.5 - this.img.width*0.5, height*0.25), img);
+
+    InitText();
 }
 
 ///////////////////////////////////////////////
@@ -59,6 +64,8 @@ function Update(){
     }
 
     oct.Update();
+
+    UpdateText();
 }
 
 ///////////////////////////////////////////////
@@ -74,6 +81,8 @@ function Draw(){
     }
 
     oct.Draw();
+
+    DrawText();
 }
 
 ///////////////////////////////////////////////
@@ -172,3 +181,29 @@ window.onresize = function() {
     width = w;
     height = h;
 };
+
+function s2f(val) {
+    return val * 60;
+}
+
+function InitText(){
+    t = 0;
+    textEle = document.getElementById('cycle-text');
+    textHead = 0;
+    textInterval = s2f(3.5);
+    texts = [
+        'recipes'.toUpperCase(),
+        'travel plans'.toUpperCase(),
+        'dev tools'.toUpperCase(),
+        'hobbies'.toUpperCase()
+    ];
+}
+function UpdateText(){
+    t++;
+    if(t % textInterval == 0){
+        textHead = (textHead+1) % texts.length;
+    }
+}
+function DrawText(){
+    textEle.innerHTML = texts[textHead];
+}

@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
     <script>var assetBasePath = "{{ asset('') }}"; //used in sketch_top.js to anchor img files</script>
     <script src="{{ asset('js/sketch_top.js') }}"></script>
+    {{-- <script src="{{ asset('js/cycleText.js') }}"></script> --}}
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
@@ -51,7 +52,7 @@
     <div id="bottom-container_wrapper">
         <div id="bottom-container" class="container">
             <div id="bottom-merge_links" class="col-xs-12 col-md-8 col-md-offset-2">
-                <h1>MERGE YOUR: <span class="emphasize">WHATEVER</span></h1>
+                <h1>MERGE YOUR: <span id="cycle-text" class="emphasize">WHATEVER</span></h1>
                 {!! Form::model($octopath_dataset, ['route'=>'octopaths.store']) !!}
                 {!! Form::hidden('retention_date', $default_retention_date) !!}
 

@@ -36,7 +36,7 @@
                             <div>
                                 {{-- link form --}}
                                 {{-- {!! Form::label('link'. ($i+1), 'url') !!} --}}
-                                url
+                                url <span class="text-lowercase txt-lightblue">*required</span>
                                 {!! Form::text( 'link'. ($i+1), old('link'. ($i+1)), ['class' => 'form-control input-md', 'placeholder' => 'https://www.rakuten.com/'] ) !!}
                             </div>
                             <div>

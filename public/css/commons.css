@@ -23,7 +23,7 @@ body{
 }
 
 .btn-red {
-    padding: 9px 10px;
+    padding: 7px 0;
     background-color: #d70026;
     color: #f8f5f3;
     border: none;
@@ -34,7 +34,7 @@ body{
 }
 
 .btn-yellow {
-    padding: 9px 10px;
+    padding: 7px 0;
     background-color: #cc9e34;
     color: #f8f5f3;
     border: none;
@@ -45,7 +45,7 @@ body{
 }
 
 .btn-white {
-    padding: 9px 10px;
+    padding: 7px 0;
     background-color: #f8f5f3;
     color: #000b29;
     border: none;
@@ -66,6 +66,9 @@ body{
 }
 .txt-red {
     color: #d70026;
+}
+.txt-lightblue {
+    color: #7586b6;
 }
 
 .input-transparent {

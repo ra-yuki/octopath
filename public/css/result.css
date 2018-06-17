@@ -1,0 +1,8 @@
+#top-wrapper {
+    min-height: 800px;
+    height: 100%;
+}
+
+#copybox {
+    margin: 40px 0;
+}

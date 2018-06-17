@@ -14,6 +14,10 @@
     height: 90px;
 }
 
+#nav li {
+    background-color: rgba(0, 11, 41, 0.85);
+}
+
 #nav a {
     color: #f8f5fa;
     padding-top: 32px; /*added 2px for border-top when :hover*/

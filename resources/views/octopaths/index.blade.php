@@ -44,12 +44,14 @@
             </div>
         </div>
     </div>
+
+    {{-- error message --}}
+    @include('commons.error')
+    
     <div id="bottom-container_wrapper">
         <div id="bottom-container" class="container">
             <div id="bottom-merge_links" class="col-xs-12 col-md-8 col-md-offset-2">
                 <h1>MERGE YOUR: <span class="emphasize">WHATEVER</span></h1>
-                {{-- error message --}}
-                @include('commons.error')
                 {!! Form::model($octopath_dataset, ['route'=>'octopaths.store']) !!}
                 {!! Form::hidden('retention_date', $default_retention_date) !!}
 

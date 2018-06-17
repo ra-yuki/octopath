@@ -13,7 +13,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>{!! link_to_route('octopaths.create', 'MERGE') !!}</li>
-                    {{-- <li>{!! link_to_route('users.dashboard', 'DASHBOARD') !!}</li> --}}
                     @if(Auth::check())
                         <li>{!! link_to_route('users.dashboard', 'DASHBOARD') !!}</li>
                         <li class="dropdown">

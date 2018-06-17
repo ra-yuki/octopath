@@ -1,0 +1,21 @@
+#top-wrapper {
+    min-height: 800px;
+    height: 100%;
+}
+
+h1 {
+    margin-top: 7.5%;
+    font-size: 75px;
+}
+
+h3 {
+    margin-top: 3%;
+}
+
+p {
+    margin-top: 2%;
+}
+
+a:hover {
+    color: #7586b6;
+}

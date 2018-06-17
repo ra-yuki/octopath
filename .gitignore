@@ -15,9 +15,9 @@ yarn-error.log
 #images
 *.jpg
 *.gif
-*.png
+#*.png
 *.svg
-*.ico
+#*.ico
 
 #videos
 *.wmv
